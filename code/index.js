@@ -21,7 +21,6 @@ function DoubleLinkedList() {
       this.tail = node
     }
     this.length += 1
-    return true
   }
 
   // 从链表任意地方插入数据
@@ -114,7 +113,7 @@ function DoubleLinkedList() {
   // 根据元素删除节点
   DoubleLinkedList.prototype.remove = function remove(element) {
     const position = this.indexOf(element)
-    if (position === false) return false
+    console.log(position)
     return this.removeAt(position)
   }
 
@@ -163,4 +162,8 @@ function DoubleLinkedList() {
   }
 }
 
-export default DoubleLinkedList
+const doubleLinkedList = new DoubleLinkedList()
+
+doubleLinkedList.append(1)
+const str = doubleLinkedList.toString()
+console.log(str)
