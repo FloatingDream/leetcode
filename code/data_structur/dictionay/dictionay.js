@@ -1,5 +1,5 @@
 function Dictionay() {
-  // 定义字典元素
+// 定义字典元素
   // 字典就是把数组的下边转为key值。成为类数组对象。
   this.itmes = {}
 
@@ -38,6 +38,4 @@ function Dictionay() {
   }
 }
 
-const dictionay = new Dictionay()
-dictionay.set('1', '2')
-console.log(dictionay.size())
+export default Dictionay
