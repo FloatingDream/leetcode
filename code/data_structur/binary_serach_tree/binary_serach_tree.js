@@ -115,6 +115,8 @@ function BinarySerachTree() {
         parent.right = successor
       }
     }
+
+    return true
   }
 
   BinarySerachTree.prototype.getSuccessor = function getSuccessor(delNode) {
@@ -136,7 +138,45 @@ function BinarySerachTree() {
   }
 
   // 先序遍历
-  
+  BinarySerachTree.prototype.preOrderTraversal = function preOrderTraversal(handler) {
+    this.preOrderTranversalNode(this.root, handler)
+  }
+
+  BinarySerachTree.prototype.preOrderTranversalNode = function preOrderTranversalNode(
+    node, handler,
+  ) {
+    if (node !== null) {
+      handler(node)
+      this.preOrderTranversalNode(node.left, handler)
+      this.preOrderTranversalNode(node.right, handler)
+    }
+  }
+
+  BinarySerachTree.prototype.inOrderTraversal = function inOrderTraversal(handler) {
+    this.inOrderTraversalNode(this.root, handler)
+  }
+
+  BinarySerachTree.prototype.inOrderTraversalNode = function inOrderTraversalNode(node, handler) {
+    if (node !== null) {
+      this.inOrderTraversalNode(node.left, handler)
+      handler(node)
+      this.inOrderTraversalNode(node.right, handler)
+    }
+  }
+
+  BinarySerachTree.prototype.postOrderTraversal = function postOrderTraversal(handler) {
+    this.postOrderTraversalNode(this.root, handler)
+  }
+
+  BinarySerachTree.prototype.postOrderTraversalNode = function preOrderTranversalNode(
+    node, handler,
+  ) {
+    if (node !== null) {
+      this.postOrderTraversalNode(node.left, handler)
+      this.postOrderTraversalNode(node.right, handler)
+      handler(node)
+    }
+  }
 }
 
 export default BinarySerachTree
