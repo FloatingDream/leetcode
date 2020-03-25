@@ -71,10 +71,11 @@ function BinarySerachTree() {
     while (current.key !== key) {
       parent = current
       if (current.key > key) {
-        current = current.right
-      } else {
         current = current.left
         isLeftChild = true
+      } else {
+        current = current.right
+        isLeftChild = false
       }
       if (current === null) return false
     }
@@ -88,8 +89,54 @@ function BinarySerachTree() {
       } else {
         parent.right = null
       }
+    } else if (current.left === null) { // 删除的节点有一个右子节点
+      if (current === this.root) {
+        this.root = current.right
+      } else if (isLeftChild) {
+        parent.left = current.right
+      } else {
+        parent.right = current.right
+      }
+    } else if (current.right === null) { // 删除的节点有一个左子节点
+      if (current === this.root) {
+        this.root = current.left
+      } else if (isLeftChild) {
+        parent.left = current.left
+      } else {
+        parent.right = current.right
+      }
+    } else { // 删除的节点有两个子节点
+      const successor = this.getSuccessor()
+      if (current === this.root) {
+        this.root = successor
+      } else if (isLeftChild) {
+        parent.left = successor
+      } else {
+        parent.right = successor
+      }
     }
   }
+
+  BinarySerachTree.prototype.getSuccessor = function getSuccessor(delNode) {
+    let successor = delNode
+    // let successorParent = delNode
+    let current = delNode.right
+
+    while (current !== null) {
+      // successorParent = successor
+      successor = current
+      current = current.left
+    }
+
+    if (successor !== delNode.right) {
+      successor.left = delNode.right.left
+      successor.right = delNode.right
+    }
+    return successor
+  }
+
+  // 先序遍历
+  
 }
 
 export default BinarySerachTree
