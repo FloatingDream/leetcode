@@ -1,5 +1,1 @@
-import Queue from './data_structur/queue/queue.js'
-
-const queue = new Queue()
-console.log(queue)
-console.log(1)
+// import Queue from './data_structur/queue/queue.js' 引入快捷测试方法
